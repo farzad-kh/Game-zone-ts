@@ -1,7 +1,6 @@
 import { AxiosRequestConfig, CanceledError } from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { apiClient } from "../services/api-client";
-import { SelectGenresContext } from "../components/context/SelectGenresPro";
 
 interface FetchResponse<T> {
   count: number;

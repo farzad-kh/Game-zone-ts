@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { SelectGenresContext } from "../context/SelectGenresPro";
-import { VStack, Text, HStack } from "@chakra-ui/react";
+import { Text, HStack } from "@chakra-ui/react";
 import { useGenresStore } from "../../state-managment/store";
 const TitleGenreP = () => {
   const { selectedPlatform } = useContext(SelectGenresContext);

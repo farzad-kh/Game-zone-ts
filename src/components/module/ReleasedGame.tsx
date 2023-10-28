@@ -1,6 +1,5 @@
-import React from "react";
 
-import { Badge,TagLabel,Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 interface Props {
   released: string;

@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { apiClient } from "../services/api-client";
-import useData from "./useData";
 import Genres from "../data/Genres";
 export interface Genre {
   id: string;

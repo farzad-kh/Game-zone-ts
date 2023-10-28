@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import GameGrid from "../template/GameGrid";
 import GenreList from "../template/GenreList";
 import PlatformSelector from "../module/PlatformSelector";
 import TitleGenreP from "../module/TitleGenreP";
-import Paginations from "./Paginations";
 import Footer from "./Footer";
-interface Props {
-  children: React.ReactNode;
-}
+
 const GridContainer = () => {
   return (
     <Grid

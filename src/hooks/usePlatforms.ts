@@ -4,7 +4,6 @@ export interface Platform{
     slug:string
 }
 
-import React from 'react';
 import useData from './useData';
 
 const usePlatforms = () =>useData("/platforms")

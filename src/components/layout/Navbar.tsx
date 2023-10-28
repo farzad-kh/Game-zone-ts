@@ -9,10 +9,9 @@ import {
 } from "@chakra-ui/react";
 import logo from "../../assets/logo.webp";
 import ColorModeSwitch from "../theme/ColorModeSwitch";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaAlignLeft } from "react-icons/fa";
-import { SelectGenresContext } from "../context/SelectGenresPro";
 import { useGenres } from "../../hooks/useGenres";
 import DrawerNav from "./DrawerNav";
 import SearchInput from "../module/SearchInput";
@@ -20,7 +19,7 @@ const Navbar = () => {
   const [sizeWidth, setSizeWidth] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const { data, loading, error } = useGenres();
+  const { data} = useGenres();
 
   useEffect(() => {
     window.onresize = () => {

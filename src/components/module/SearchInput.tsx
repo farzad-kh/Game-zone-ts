@@ -1,7 +1,6 @@
 import { Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import { SelectGenresContext } from "../context/SelectGenresPro";
 import { FormEvent } from "react"; // FormEvent از ماژول react استفاده شده است
 import { useSearchStore } from "../../state-managment/store";
 

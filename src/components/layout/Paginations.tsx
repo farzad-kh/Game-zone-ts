@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import { SelectGenresContext } from "../context/SelectGenresPro";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useGames } from "../../hooks/useGames";
 import {
   useSearchStore,
   usePageStore,
   useCurrentButtonStore,
 } from "../../state-managment/store";
-interface PaginationProps {
-  // Define any props if needed
-}
 
-function Paginations(props: PaginationProps) {
+function Paginations() {
   useEffect(() => {}, []);
   const pages: number = 100;
   const searchGame = useSearchStore((s) => s.searchGame);

@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
-import { SelectGenresContext } from "../context/SelectGenresPro";
-import { HStack, Image, Text, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
+import { HStack, Image, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { Genre } from "../../hooks/useGenres";
 import { useGenresStore } from "../../state-managment/store";
 interface Props {
   slug: string;
@@ -12,7 +10,7 @@ interface Props {
 }
 
 const DrawerNav = ({ slug, image_background, name, onClickHandler }: Props) => {
-  const [close, setClose] = useState(false);
+  const [close] = useState(false);
 
 
 
