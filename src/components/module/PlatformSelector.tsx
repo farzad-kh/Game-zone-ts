@@ -4,7 +4,7 @@ import { BsChevronDown } from "react-icons/bs";
 import usePlatforms, { Platform } from "../../hooks/usePlatforms";
 import {  useContext } from "react";
 import { SelectGenresContext } from "../context/SelectGenresPro";
-import { useCurrentButtonStore, usePageStore } from "../../state-managment/store";
+import {  usePageStore } from "../../state-managment/store";
 
 
 interface P {
@@ -17,7 +17,7 @@ const PlatformSelector = () => {
   const { selectedPlatform, setSelectedPlatform, 
 } =
     useContext(SelectGenresContext);
-    const addCurrentButton=useCurrentButtonStore(s=>s.addCurrentButton)
+    const addCurrentButton=usePageStore(s=>s.addCurrentButton)
   const { data, error }: P | any = usePlatforms();
 
 

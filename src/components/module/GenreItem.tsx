@@ -11,9 +11,9 @@ interface Props {
   slug: string;
 }
 
-import { useCurrentButtonStore, useGenresStore, usePageStore } from "../../state-managment/store";
+import { useGenresStore, usePageStore } from "../../state-managment/store";
 const GenreItem = ({ name, image_background, slug }: Props) => {
-  const addCurrentButton=useCurrentButtonStore (s=>s.addCurrentButton)
+  const addCurrentButton=usePageStore (s=>s.addCurrentButton)
 
   const cropBackgroundImage = `https://media.rawg.io/media/crop/600/400/${image_background
     ?.split("/")

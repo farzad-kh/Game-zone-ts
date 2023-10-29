@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { Genre } from "../hooks/useGenres";
 
-
 interface GenreStore {
   genres: Genre;
   addGenre: (data: Genre | any) => void;
@@ -12,12 +11,12 @@ interface SearchGameStore {
   addSearch: (data: string | any) => void;
 }
 interface PageGameStore {
-  currentPage: number;
-  addPage: (data: number | any) => void;
-}
-interface CurrentButtonStore {
+  currentPage: number|any;
   currentButton: number|any;
+  addPage: (data: number | any) => void;
   addCurrentButton: (data: number | any) => void;
+  increment: () => void;
+  decrement: () => void;
 }
 
 const useGenresStore = create<GenreStore>((set) => ({
@@ -31,7 +30,7 @@ const useGenresStore = create<GenreStore>((set) => ({
 
   clearGenre: () => {
     set(() => ({
-      genres: {} as Genre
+      genres: {} as Genre,
     }));
   },
 }));
@@ -48,21 +47,31 @@ const useSearchStore = create<SearchGameStore>((set) => ({
 
 const usePageStore = create<PageGameStore>((set) => ({
   currentPage: 1,
-
+  currentButton: 1,
   addPage: (data) => {
     set(() => ({
       currentPage: data,
     }));
   },
-}));
-const useCurrentButtonStore = create<CurrentButtonStore>((set) => ({
-  currentButton: 1,
 
   addCurrentButton: (data) => {
     set(() => ({
-     currentButton: data,
+      currentButton: data,
+    }));
+  },
+
+  increment: () => {
+    set((state) => ({
+      currentPage: state.currentPage + 1,
+      currentButton: state.currentButton + 1,
+    }));
+  },
+  decrement: () => {
+    set((state) => ({
+      currentPage: state.currentPage - 1,
+      currentButton: state.currentButton - 1,
     }));
   },
 }));
 
-export { useGenresStore, useSearchStore, usePageStore ,useCurrentButtonStore };
+export { useGenresStore, useSearchStore, usePageStore };

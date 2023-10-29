@@ -8,10 +8,10 @@ const TitleGenreP = () => {
 
   return (
     <HStack id="game" marginTop={5} marginBottom={2}>
-      <Text fontSize={"4xl"}>
+      <Text fontSize={{sm:"4xl",base:"3xl"}}>
         {`${Object.keys(genres).length === 0 ? "All":""} ${genres?.name || ""} ${
           selectedPlatform?.name || ""
-        }`}{" "}
+        }`}{"  "}
         Games
       </Text>
     </HStack>

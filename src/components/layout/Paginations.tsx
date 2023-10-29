@@ -1,24 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  useSearchStore,
-  usePageStore,
-  useCurrentButtonStore,
-} from "../../state-managment/store";
+import { useSearchStore, usePageStore } from "../../state-managment/store";
+import { Text } from "@chakra-ui/react";
 
 function Paginations() {
   useEffect(() => {}, []);
   const pages: number = 100;
   const searchGame = useSearchStore((s) => s.searchGame);
   const addPage = usePageStore((s) => s.addPage);
+  const currentPage = usePageStore((s) => s.currentPage);
+  const increment = usePageStore((s) => s.increment);
+  const decrement = usePageStore((s) => s.decrement);
 
-  const addCurrentButton = useCurrentButtonStore((s) => s.addCurrentButton);
-  const currentButton = useCurrentButtonStore((s) => s.currentButton);
+  const addCurrentButton = usePageStore((s) => s.addCurrentButton);
+  const currentButton = usePageStore((s) => s.currentButton);
+
   const numberOfPages: number[] = [];
   for (let i = 1; i <= pages; i++) {
     numberOfPages.push(i);
   }
-
+  const [sizeWidth, setSizeWidth] = useState(false);
   // Current active button number
 
   // Array of buttons what we see on the page
@@ -28,6 +29,10 @@ function Paginations() {
   const scrollHandler = () => {
     window.scrollTo(0, 0);
   };
+
+  // useEffect(() => {
+
+  // }, []);
 
   useEffect(() => {
     let tempNumberOfPages = [...arrOfCurrButtons];
@@ -67,52 +72,73 @@ function Paginations() {
 
     setArrOfCurrButtons(tempNumberOfPages);
     addPage(currentButton);
-  }, [currentButton]);
+  
+
+        window.onresize = () => {
+      if (window.innerWidth > 992) {
+        setSizeWidth(false);
+      } else {
+        setSizeWidth(true);
+      }
+    };
+    if (window.innerWidth > 992) {
+      setSizeWidth(false);
+    } else {
+      setSizeWidth(true);
+    }
+  }, [currentButton, currentPage]);
+
+  const incrementHandler = () => {
+    increment();
+
+    scrollHandler();
+  };
+  const decrementHandler=()=>{
+    decrement();
+
+    scrollHandler();
+  }
+
   if (searchGame.length > 0) return null;
   return (
     <div className="pagination-container">
       <a
         href="#game"
         className={`${currentButton === 1 ? "disabled" : ""}`}
-        onClick={() => {
-          addCurrentButton((prev: number) => (prev <= 1 ? prev : prev - 1));
-          scrollHandler();
-        }}
+        onClick={decrementHandler}
       >
         Prev
       </a>
       <AnimatePresence>
-        {arrOfCurrButtons.map((item, index) => (
-          <motion.a
-            href="#game"
-            ref={ref}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            key={index}
-            className={`${currentButton === item ? "active" : ""} ${
-              item === "..." && "pointer-none"
-            }`}
-            onClick={() => {
-              addCurrentButton(item as number);
-              scrollHandler();
-            }}
-          >
-            {item}
-          </motion.a>
-        ))}
+        {!sizeWidth ? (
+          arrOfCurrButtons.map((item, index) => (
+            <motion.a
+              href="#game"
+              ref={ref}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              key={index}
+              className={`${currentButton === item ? "active" : ""} ${
+                item === "..." && "pointer-none"
+              }`}
+              onClick={() => {
+                addCurrentButton(item as number);
+                scrollHandler();
+              }}
+            >
+              {item}
+            </motion.a>
+          ))
+        ) : (
+          <Text fontWeight={"semibold"} fontSize={"1rem"} margin={"0 10px"}>{currentPage}</Text>
+        )}
       </AnimatePresence>
-      <a
-        href="#game"
+      <a href="#game"
         className={`${
           currentButton === numberOfPages.length ? "disabled" : ""
         }`}
-        onClick={() => {
-          addCurrentButton((prev: number) =>
-            prev >= numberOfPages.length ? prev : prev + 1
-          );
-          scrollHandler();
-        }}
+        onClick={incrementHandler}
       >
         Next
       </a>
