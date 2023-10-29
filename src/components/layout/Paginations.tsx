@@ -28,6 +28,9 @@ function Paginations() {
   const ref = useRef(null);
   const scrollHandler = () => {
     window.scrollTo(0, 0);
+    document.body(0,0)
+    document.documentElement.scrollTo(0,0)
+    
   };
 
   // useEffect(() => {
