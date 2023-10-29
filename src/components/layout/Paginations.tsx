@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSearchStore, usePageStore } from "../../state-managment/store";
-import { Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 function Paginations() {
   useEffect(() => {}, []);
@@ -72,20 +72,6 @@ function Paginations() {
 
     setArrOfCurrButtons(tempNumberOfPages);
     addPage(currentButton);
-  
-
-        window.onresize = () => {
-      if (window.innerWidth > 640) {
-        setSizeWidth(false);
-      } else {
-        setSizeWidth(true);
-      }
-    };
-    if (window.innerWidth > 640) {
-      setSizeWidth(false);
-    } else {
-      setSizeWidth(true);
-    }
   }, [currentButton, currentPage]);
 
   const incrementHandler = () => {
@@ -93,11 +79,11 @@ function Paginations() {
 
     scrollHandler();
   };
-  const decrementHandler=()=>{
+  const decrementHandler = () => {
     decrement();
 
     scrollHandler();
-  }
+  };
 
   if (searchGame.length > 0) return null;
   return (
@@ -110,8 +96,8 @@ function Paginations() {
         Prev
       </a>
       <AnimatePresence>
-        {!sizeWidth ? (
-          arrOfCurrButtons.map((item, index) => (
+        <Flex display={{md:"flex" ,base:"none"}}>
+          {arrOfCurrButtons.map((item, index) => (
             <motion.a
               href="#game"
               ref={ref}
@@ -129,12 +115,12 @@ function Paginations() {
             >
               {item}
             </motion.a>
-          ))
-        ) : (
-          <Text fontWeight={"semibold"} fontSize={"1rem"} margin={"0 10px"}>{currentPage}</Text>
-        )}
+          ))}
+        </Flex>
+        <Text   display={{md:"none" ,base:"flex"}} fontWeight={"semibold"} fontSize={"1rem"} margin={"0 10px"}>{currentPage}</Text>
       </AnimatePresence>
-      <a href="#game"
+      <a
+        href="#game"
         className={`${
           currentButton === numberOfPages.length ? "disabled" : ""
         }`}

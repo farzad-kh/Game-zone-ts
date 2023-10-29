@@ -131,20 +131,21 @@ ul {
   padding: 7px 13px;
   text-decoration: none;
   color: #ece8e8;
-  background-color: #24232f;
   border-radius: 3px;
   cursor: pointer;
+  background-color: #1c2226;
 }
 
 .pagination-container a.active {
-  background-color: #283035;
+  background-color: #284044;
+
   color: #fff;
-  border: 1px solid #28151d;
+  border: 1px solid #284044;
   pointer-events: none;
 }
 
 .pagination-container a:hover {
-  background-color: #283035;
+  background-color: #284044;
 
 
 
