@@ -75,13 +75,13 @@ function Paginations() {
   
 
         window.onresize = () => {
-      if (window.innerWidth > 992) {
+      if (window.innerWidth > 640) {
         setSizeWidth(false);
       } else {
         setSizeWidth(true);
       }
     };
-    if (window.innerWidth > 992) {
+    if (window.innerWidth > 640) {
       setSizeWidth(false);
     } else {
       setSizeWidth(true);
